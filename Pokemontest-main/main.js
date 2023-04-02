@@ -39,7 +39,7 @@ function getFromApi(id) {
 }
 
 function findRandomPokemon() {
-  let id = Math.floor(Math.random() * 251);
+  let id = Math.floor(Math.random() * 151);
 
   getFromApi(id);
 }
