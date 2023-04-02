@@ -1,0 +1,9 @@
+.enemy-pokemon {
+  border: 2px solid red;
+  display: flex;
+  justify-content: end;
+}
+.pokemon-image {
+  height: 40vh;
+  /* width: 500px; */
+}

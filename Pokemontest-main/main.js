@@ -15,13 +15,13 @@ function setActivePokemon(rawData) {
     <div>
     ${title}
     </div>
-    <img src="${img}" alt="error loading image" >
+    <img src="${img}" alt="error loading image" class="pokemon-image">
     `
   }
   
 }
 
-function getFromApi(id) {
+function getEnemyPokemonFromApi(id) {
   fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
     method: 'GET',
     headers: {
@@ -39,7 +39,43 @@ function getFromApi(id) {
 }
 
 function findRandomPokemon() {
-  let id = Math.floor(Math.random() * 151);
+  let id = Math.floor(Math.random() * 251);
 
-  getFromApi(id);
+  getEnemyPokemonFromApi(id);
 }
+
+function setYourPokemon(rawData) {
+  pokemon = rawData;
+  console.log(pokemon)
+
+  let display = document.getElementById("yourPokemon");
+  let img = pokemon.sprites.back_default;
+
+  if (display){
+    display.innerHTML = `
+    <img src="${img}" alt="error loading image" class="pokemon-image">
+    `
+  }
+}
+
+function findMyPokemon() {
+  let id = 157;
+  fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(res => res.json())
+    .then(res => {
+      setYourPokemon(res)
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+findRandomPokemon() 
+findMyPokemon()
+
